@@ -42,7 +42,17 @@ def finish(kills, losses, x_algorithm_use_rate):
                      'images/xButton/xbutton39.png', 'images/xButton/xbutton40.png',
                      'images/xButton/xbutton41.png', 'images/xButton/xbutton42.png',
                      'images/xButton/xbutton43.png', 'images/xButton/xbutton44.png',
-                     'images/xButton/xbutton45.png',]
+                     'images/xButton/xbutton45.png', 'images/xButton/xbutton46.png',
+                     'images/xButton/xbutton47.png', 'images/xButton/xbutton48.png',
+                     'images/xButton/xbutton49.png', 'images/xButton/xbutton50.png',
+                     'images/xButton/xbutton51.png', 'images/xButton/xbutton52.png',
+                     'images/xButton/xbutton53.png', 'images/xButton/xbutton54.png',
+                     'images/xButton/xbutton55.png', 'images/xButton/xbutton56.png',
+                     'images/xButton/xbutton57.png', 'images/xButton/xbutton58.png',
+                     'images/xButton/xbutton59.png', 'images/xButton/xbutton60.png',
+                     'images/xButton/xbutton61.png', 'images/xButton/xbutton62.png',
+                     'images/xButton/xbutton63.png', 'images/xButton/xbutton64.png',
+                     'images/xButton/xbutton65.png', 'images/xButton/xbutton66.png']
 
 
     for e, button_image_path in enumerate(button_images, start=1):
@@ -57,11 +67,11 @@ def finish(kills, losses, x_algorithm_use_rate):
             print("\n\tCorrect X button: {},60".format(e))
             return kills, losses,  x_algorithm_use_rate
 
-    print("movida?")
+    print("X Button not found")
 
-    print("\nFailed with 65 confidence. Confidence -5")
+    print("\nFailed with 60 confidence. Now clicking on every single pixel.")
 
-    images_folder = "images/low_xButton/fail/" + "fail" + str(time.time()) + ".png"
+    images_folder = "images/low_xButton/" + "fail" + str(time.time()) + ".png"
     MI.screenshot(images_folder, region = (400, 150, 398, 300))
 
 #     # X ALGORITHM #
@@ -78,7 +88,7 @@ def finish(kills, losses, x_algorithm_use_rate):
             MI.click(X)
             if(MI.locateCenterOnScreen('images/low_playerbubble.png',confidence = 0.7, region = (452, 410, 60, 60))):
                 MI.click(605, 211)
-    
+                print("every single pixel clicked")
                 return kills, losses, x_algorithm_use_rate
 #     ###################################################################################################################################
 

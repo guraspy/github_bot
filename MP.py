@@ -11,7 +11,10 @@ while True:
         pix = MI.pixel(X ,Y)
         print(pix)
         time.sleep(0.5)
-    else:
-        pass
+    elif keyboard.is_pressed('p'):
+        MI.click(690, 300)
+        time.sleep(0.3)
+        MI.click(510, 290)
+    
 
 
