@@ -1,17 +1,17 @@
 import pyautogui as MI
 import time
 import math
-import low_finishBattle as CB
+# import low_finishBattle as CB
 import finish2 
 import random
-import tkinter 
+import tkinter as tk
 
 
 NPCone = True
 PMFlag = True
 need_war_core = False
 
-root = tkinter.Tk()
+root = tk.Tk()
 screen_width = root.winfo_screenwidth()
 screen_height = root.winfo_screenheight()
 
@@ -52,19 +52,21 @@ def privateChat():
 
     global PMFlag
     # PM messages
-    statements_1 = ["hi", "hey", "good day", "hello", "yoo"]
-    statements_2 = ["how are u", "how are you", "how are you doing?", "what's up?"]
-    PM = MI.locateCenterOnScreen('images/skills/pm.png', confidence = 0.70)
-    CHAT = MI.locateCenterOnScreen('images/skills/chat_x.png', confidence = 0.70)
+
+    PM = MI.locateCenterOnScreen('images/skills/pm.png', confidence = 0.70, region = (400, 100, 400, 400))
+    # CHAT = MI.locateCenterOnScreen('images/skills/chat_x.png', confidence = 0.70, region = (400, 100, 400, 400))
     
-    if((PM and PMFlag) or (CHAT and PMFlag)):
+    if PM and PMFlag:
+        
+        statements_1 = ["hi", "hey", "good day", "hello", "yoo"]
+        statements_2 = ["how are u", "how are you", "how are you doing?", "what's up?"]
 
         print("We have received a PM")
-        playerSS = "images/PMs/" + "PM_" + str(time.time()) + ".png"
-        MI.screenshot(playerSS)
+        # playerSS = "images/PMs/" + "PM_" + str(time.time()) + ".png"
+        # MI.screenshot(playerSS)
         if PM:
             MI.click(PM)
-        if((PM and PMFlag) or (CHAT and PMFlag)):
+        if PM and PMFlag:
             time.sleep(1)
             MI.click(544, 300)
             time.sleep(3)
@@ -89,6 +91,8 @@ def main():
     kills = 0
     losses = 0
     x_algorithm_use_rate = 0
+    max_wins = 300
+    
 
     ##For timing purposes
     startingTime = overallTime = time.time()
@@ -116,7 +120,14 @@ def main():
         KARTHERAX = MI.locateCenterOnScreen('images/kartherax.png', confidence = 0.7)
         EDGAR_BOOTHE = MI.locateCenterOnScreen('images/edgar_bothe.png', confidence = 0.7)
         SAEVA_LIONHART = MI.locateCenterOnScreen('images/saeva_lionhart.png', confidence = 0.7)
-
+        CADEN = MI.locateCenterOnScreen('images/caden.png', confidence = 0.7)
+        DEUCE = MI.locateCenterOnScreen('images/deuce.png', confidence = 0.7)
+        OVERLORD_GUARD = MI.locateCenterOnScreen('images/overlord_guard.png', confidence = 0.7)
+        ANYA = MI.locateCenterOnScreen('images/anya.png', confidence = 0.9)
+        HANK = MI.locateCenterOnScreen('images/hank.png', confidence = 0.7)
+        BIDO = MI.locateCenterOnScreen('images/bido.png', confidence = 0.9)
+        CONDUCTOR = MI.locateCenterOnScreen('images/conductor.png', confidence = 0.7)
+        TITAN = MI.locateCenterOnScreen('images/titan.png', confidence = 0.7)
 
         if BIG_TUNA:
             x1 = 705
@@ -226,7 +237,71 @@ def main():
             x2 = 457
             y2 = 205
             found = True
+        elif CADEN:
+            x1 = 466
+            y1 = 300
+            x2 = 450
+            y2 = 238
+            found = True
+            print("1")
+        elif DEUCE:
+            x1 = 466
+            y1 = 300
+            x2 = 450
+            y2 = 220
+            found = True
+            print("2")
+            
+        elif OVERLORD_GUARD:
+            x1 = 531
+            y1 = 332
+            x2 = 482
+            y2 = 219
+            found = True
+            print("3")
+            
+        elif TITAN:
+            x1 = 594
+            y1 = 261
+            x2 = 461
+            y2 = 236
+            found = True
+            print("4")
+            
+        elif HANK:
+            x1 = 721
+            y1 = 256
+            x2 = 449
+            y2 = 220
+            found = True
+            print("5")
+            
+        elif ANYA:
+            x1 = 455
+            y1 = 273
+            x2 = 448
+            y2 = 223
+            found = True
+            print("6")
+            
+        elif CONDUCTOR:
+            x1 = 748
+            y1 = 294
+            x2 = 454
+            y2 = 225
+            found = True
+            print("7")
+            
+        elif BIDO:
+            x1 = 482
+            y1 = 269
+            x2 = 457
+            y2 = 222
+            found = True
+            print("8")
+            
         
+
 
         if(found):
             MI.click(x1,y1)
@@ -242,24 +317,25 @@ def main():
                 startingTime = time.time()
 
             print("Battle -", numBattles,"\t")
-            time.sleep(5)
+            privateChat()
+            time.sleep(3)
             privateChat()
             ELITE_YETI = None
         
-        elif(MI.locateCenterOnScreen('images/med_playerbubble.png', confidence = 0.70, region = (400, 150, 80, 70))):
+        elif(MI.locateCenterOnScreen('images/med_playerbubble.png', confidence = 0.70, region = (400, 100, 400, 100))):
             privateChat()
 
             ##This statment continues to be run as long as we are alive or the battle is still going on 
-            while(MI.locateCenterOnScreen('images/med_playerbubble.png', confidence = 0.70, region = (400, 150, 80, 70))):
+            while(MI.locateCenterOnScreen('images/med_playerbubble.png', confidence = 0.70, region = (400, 100, 400, 100))):
                 battleOver = True
-                checkForHeal()
+                # checkForHeal()
+                time.sleep(0.1)
 
                 if MI.locateCenterOnScreen('images/med_strike.png', confidence = 0.9):
 
                     MI.click(MI.locateCenterOnScreen('images/cannon.png', confidence= 0.8))
                     MI.click(MI.locateCenterOnScreen('images/maelstrom.png', confidence= 0.8))
                     # MI.click(MI.locateCenterOnScreen('images/fireball.png', confidence= 0.8))
-                    MI.click(MI.locateCenterOnScreen('images/parasite.png', confidence= 0.8))
 
                     #bot
                     MI.click(701, 335)
@@ -269,6 +345,9 @@ def main():
                     MI.click(MI.locateCenterOnScreen('images/gate.png', confidence= 0.8))
 
                     MI.click(MI.locateCenterOnScreen('images/focus_fury.png', confidence= 0.8))
+
+                    MI.click(MI.locateCenterOnScreen('images/parasite.png', confidence= 0.8))
+
 
                     #gun  
                     MI.click(497, 336)  
@@ -281,7 +360,6 @@ def main():
                     mouseMove()
 
         elif battleOver == True:
-            print("aq movidaaaa?")
             privateChat()
             time.sleep(2)
             MI.click(598, 350)
@@ -291,9 +369,7 @@ def main():
                     or (MI.locateCenterOnScreen('images/hand.png',confidence=0.7))):
                     
                     kills, losses, x_algorithm_use_rate = finish2.finish(kills, losses, x_algorithm_use_rate)
-                    if kills < 0 and losses < 0:
-                        print("X undetected")
-                        return
+
                     MI.click(605, 211)
                     MI.click(605, 211)
                     
@@ -303,9 +379,13 @@ def main():
                     newTime = time.time()
                     if numBattles > 0:
                         battleStats(numBattles, kills, losses, newTime, startingTime, overallTime, x_algorithm_use_rate)
+                    elif numBattles > max_wins:
+                        print("We have won", max_wins, "battles. Bot will now close.")
+                        input()
 
                     #if we get pm program will close after battle
                     if not PMFlag:
+                        print("=========\nwe got pm so bot closing\n=========")
                         exit()
 
 

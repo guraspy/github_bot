@@ -19,60 +19,85 @@ def finish(kills, losses, x_algorithm_use_rate):
         print("\tBattle Result: Loss")
 
     MI.PAUSE = 0.001
-
-    button_images = ['images/xButton/xbutton1.png', 'images/xButton/xbutton2.png',
-                     'images/xButton/xbutton3.png', 'images/xButton/xbutton4.png',
-                     'images/xButton/xbutton5.png', 'images/xButton/xbutton6.png',
-                     'images/xButton/xbutton7.png', 'images/xButton/xbutton8.png',
-                     'images/xButton/xbutton9.png', 'images/xButton/xbutton10.png',
-                     'images/xButton/xbutton11.png', 'images/xButton/xbutton12.png',
-                     'images/xButton/xbutton13.png', 'images/xButton/xbutton14.png',
-                     'images/xButton/xbutton15.png', 'images/xButton/xbutton16.png',
-                     'images/xButton/xbutton17.png', 'images/xButton/xbutton18.png',
-                     'images/xButton/xbutton19.png', 'images/xButton/xbutton20.png',
-                     'images/xButton/xbutton21.png', 'images/xButton/xbutton22.png',
-                     'images/xButton/xbutton23.png', 'images/xButton/xbutton24.png',
-                     'images/xButton/xbutton25.png', 'images/xButton/xbutton26.png',
-                     'images/xButton/xbutton27.png', 'images/xButton/xbutton28.png',
-                     'images/xButton/xbutton29.png', 'images/xButton/xbutton30.png',
-                     'images/xButton/xbutton31.png', 'images/xButton/xbutton32.png',
-                     'images/xButton/xbutton33.png', 'images/xButton/xbutton34.png',
-                     'images/xButton/xbutton35.png', 'images/xButton/xbutton36.png',
-                     'images/xButton/xbutton37.png', 'images/xButton/xbutton38.png',
-                     'images/xButton/xbutton39.png', 'images/xButton/xbutton40.png',
-                     'images/xButton/xbutton41.png', 'images/xButton/xbutton42.png',
-                     'images/xButton/xbutton43.png', 'images/xButton/xbutton44.png',
-                     'images/xButton/xbutton45.png', 'images/xButton/xbutton46.png',
-                     'images/xButton/xbutton47.png', 'images/xButton/xbutton48.png',
-                     'images/xButton/xbutton49.png', 'images/xButton/xbutton50.png',
-                     'images/xButton/xbutton51.png', 'images/xButton/xbutton52.png',
-                     'images/xButton/xbutton53.png', 'images/xButton/xbutton54.png',
-                     'images/xButton/xbutton55.png', 'images/xButton/xbutton56.png',
-                     'images/xButton/xbutton57.png', 'images/xButton/xbutton58.png',
-                     'images/xButton/xbutton59.png', 'images/xButton/xbutton60.png',
-                     'images/xButton/xbutton61.png', 'images/xButton/xbutton62.png',
-                     'images/xButton/xbutton63.png', 'images/xButton/xbutton64.png',
-                     'images/xButton/xbutton65.png', 'images/xButton/xbutton66.png']
-
+    # button_images = ['images/xButton/xbutton1.png', 'images/xButton/xbutton2.png',
+    #                  'images/xButton/xbutton3.png', 'images/xButton/xbutton4.png',
+    #                  'images/xButton/xbutton5.png', 'images/xButton/xbutton6.png',
+    #                  'images/xButton/xbutton7.png', 'images/xButton/xbutton8.png',
+    #                  'images/xButton/xbutton9.png', 'images/xButton/xbutton10.png',
+    #                  'images/xButton/xbutton11.png', 'images/xButton/xbutton12.png',
+    #                  'images/xButton/xbutton13.png', 'images/xButton/xbutton14.png',
+    #                  'images/xButton/xbutton15.png', 'images/xButton/xbutton16.png',
+    #                  'images/xButton/xbutton17.png', 'images/xButton/xbutton18.png',
+    #                  'images/xButton/xbutton19.png', 'images/xButton/xbutton20.png',
+    #                  'images/xButton/xbutton21.png', 'images/xButton/xbutton22.png',
+    #                  'images/xButton/xbutton23.png', 'images/xButton/xbutton24.png',
+    #                  'images/xButton/xbutton25.png', 'images/xButton/xbutton26.png',
+    #                  'images/xButton/xbutton27.png', 'images/xButton/xbutton28.png',
+    #                  'images/xButton/xbutton29.png', 'images/xButton/xbutton30.png',
+    #                  'images/xButton/xbutton31.png', 'images/xButton/xbutton32.png',
+    #                  'images/xButton/xbutton33.png', 'images/xButton/xbutton34.png',
+    #                  'images/xButton/xbutton35.png', 'images/xButton/xbutton36.png',
+    #                  'images/xButton/xbutton37.png', 'images/xButton/xbutton38.png',
+    #                  'images/xButton/xbutton39.png', 'images/xButton/xbutton40.png',
+    #                  'images/xButton/xbutton41.png', 'images/xButton/xbutton42.png',
+    #                  'images/xButton/xbutton43.png', 'images/xButton/xbutton44.png',
+    #                  'images/xButton/xbutton45.png', 'images/xButton/xbutton46.png',
+    #                  'images/xButton/xbutton47.png', 'images/xButton/xbutton48.png',
+    #                  'images/xButton/xbutton49.png', 'images/xButton/xbutton50.png',
+    #                  'images/xButton/xbutton51.png', 'images/xButton/xbutton52.png',
+    #                  'images/xButton/xbutton53.png', 'images/xButton/xbutton54.png',
+    #                  'images/xButton/xbutton55.png', 'images/xButton/xbutton56.png',
+    #                  'images/xButton/xbutton57.png', 'images/xButton/xbutton58.png',
+    #                  'images/xButton/xbutton59.png', 'images/xButton/xbutton60.png',
+    #                  'images/xButton/xbutton61.png', 'images/xButton/xbutton62.png',
+    #                  'images/xButton/xbutton63.png', 'images/xButton/xbutton64.png',
+    #                  'images/xButton/xbutton65.png', 'images/xButton/xbutton66.png']
+    button_images = [f'images/xButton/xbutton{i}.png' for i in range(100, 112)]
+    
+    MI.click(473, 374)
 
     for e, button_image_path in enumerate(button_images, start=1):
 
         x = MI.locateCenterOnScreen(button_image_path, confidence=0.6, grayscale=True, region=(400, 165, 400, 270))
         if x:
             MI.click(x)
+            time.sleep(0.5)
         
         if(MI.pixelMatchesColor(633, 241, (224, 211, 118))):
             pass
+        elif(MI.locateCenterOnScreen('images/low_victoryX.png',confidence = 0.85,)):
+            pass
+        elif(MI.locateCenterOnScreen('images/low_defeatX.png',confidence = 0.85,)):
+            pass
         else:
-            print("\n\tCorrect X button: {},60".format(e))
-            return kills, losses,  x_algorithm_use_rate
+            print("\n\tCorrect X button: {}".format(e))
+            return kills, losses, x_algorithm_use_rate
+        
+    print("\nFailed with 60 confidence. Now clicking on every single pixel.")
+        
+    for e, button_image_path in enumerate(button_images, start=1):
+
+        x = MI.locateCenterOnScreen(button_image_path, confidence=0.8, grayscale=True, region=(400, 165, 400, 270))
+        if x:
+            MI.click(x)
+            time.sleep(0.1)
+        
+        if(MI.pixelMatchesColor(633, 241, (224, 211, 118))):
+            pass
+        elif(MI.locateCenterOnScreen('images/low_victoryX.png',confidence = 0.85,)):
+            pass
+        elif(MI.locateCenterOnScreen('images/low_defeatX.png',confidence = 0.85,)):
+            pass
+        else:
+            print("\n\tCorrect X button: {}".format(e))
+            return kills, losses, x_algorithm_use_rate
 
     print("X Button not found")
 
-    print("\nFailed with 60 confidence. Now clicking on every single pixel.")
+    print("\nFailed with 80 confidence. Now clicking on every single pixel.")
 
-    images_folder = "images/low_xButton/" + "fail" + str(time.time()) + ".png"
-    MI.screenshot(images_folder, region = (400, 150, 398, 300))
+    # images_folder = "images/low_xButton/" + "fail" + str(time.time()) + ".png"
+    # MI.screenshot(images_folder, region = (400, 150, 398, 300))
 
 #     # X ALGORITHM #
 #     ##################################################################################################################################

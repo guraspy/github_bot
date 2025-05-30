@@ -1,3 +1,8 @@
+print("\n=======================")
+print("= BOT WILL START SOON =")
+print("=======================\n")
+
+
 import pyautogui as MI
 import time
 import math
@@ -5,6 +10,8 @@ import math
 import finish2 
 import random
 import tkinter as tk
+from licenses import check_license
+import sys
 
 
 NPCone = True
@@ -16,6 +23,12 @@ screen_width = root.winfo_screenwidth()
 screen_height = root.winfo_screenheight()
 
 MI.Pause = 0.001
+
+#if license is not valid
+if not check_license():
+    # input()
+    time.sleep(10)
+    sys.exit()
 
 print("STARTING IN") 
 print("3")
@@ -38,16 +51,18 @@ def privateChat():
 
     global PMFlag
     # PM messages
-    statements_1 = ["hi", "hey", "good day", "hello", "yoo"]
-    statements_2 = ["how are u", "how are you", "how are you doing?", "what's up?"]
+
     PM = MI.locateCenterOnScreen('images/skills/pm.png', confidence = 0.70)
     CHAT = MI.locateCenterOnScreen('images/skills/chat_x.png', confidence = 0.70)
     
     if((PM and PMFlag) or (CHAT and PMFlag)):
+        
+        statements_1 = ["hi", "hey", "good day", "hello", "yoo"]
+        statements_2 = ["how are u", "how are you", "how are you doing?", "what's up?"]
 
         print("We have received a PM")
-        playerSS = "images/PMs/" + "PM_" + str(time.time()) + ".png"
-        MI.screenshot(playerSS)
+        # playerSS = "images/PMs/" + "PM_" + str(time.time()) + ".png"
+        # MI.screenshot(playerSS)
         if PM:
             MI.click(PM)
         if((PM and PMFlag) or (CHAT and PMFlag)):
@@ -75,6 +90,8 @@ def main():
     kills = 0
     losses = 0
     x_algorithm_use_rate = 0
+    max_wins = random.randint(250, 299)
+    
 
     ##For timing purposes
     startingTime = overallTime = time.time()
@@ -87,19 +104,31 @@ def main():
         jugg = MI.locateCenterOnScreen('images/med_jug.png', confidence = 0.75)
         if(jugg):
 
-            turret = MI.locateCenterOnScreen('images/turret.png', confidence=0.7)
-            if(turret):
-                MI.click(turret)
-                time.sleep(1)
+            # turret = MI.locateCenterOnScreen('images/turret.png', confidence=0.7)
+            # if(turret):
+            #     MI.click(turret)
+            #     time.sleep(1)
                 
-                #super bomb
-                MI.click(690, 300)
-                time.sleep(0.3)
+            #     #super bomb
+            #     MI.click(690, 300)
+            #     time.sleep(0.3)
                 
-                #small bomb
-                MI.click(510, 290)
-                time.sleep(0.3)
-                
+            #     #small bomb
+            #     MI.click(510, 290)
+            #     time.sleep(0.3)
+            turrets = [f'images/turret_{i}.png' for i in range(1, 4)]
+            for turret in turrets:
+                if MI.locateCenterOnScreen(turret, confidence = 0.7):
+                    MI.click(turret)
+                    time.sleep(1)
+                    
+                    #super bomb
+                    MI.click(690, 300)
+                    time.sleep(0.3)
+                    
+                    #small bomb
+                    MI.click(510, 290)
+                    time.sleep(0.3)
 
             ##Enters the jugg battle
             numBattles = numBattles + 1
@@ -110,12 +139,14 @@ def main():
             ##In case of lag, keeps pressing the jugg battle as long as we see it (until we enter)
 
             jugg = MI.locateCenterOnScreen('images/med_jug.png', confidence = 0.7)
-            while(jugg):
+            jugg_stuck = MI.locateCenterOnScreen('images/jug_stuck.png', confidence = 0.6)
+            while(jugg or jugg_stuck):
                 MI.click(jugg)
-                MI.click(630, 419)
+                # MI.click(630, 419)
                 time.sleep(0.25)
                 jugg = MI.locateCenterOnScreen('images/med_jug.png', confidence = 0.7)
-                # jugg_stuck = MI.locateCenterOnScreen('images/med_jug_stuck.png', confidence = 0.6)
+                jugg_stuck = MI.locateCenterOnScreen('images/jug_stuck.png', confidence = 0.6)
+                MI.click(jugg_stuck)
 
             if(numBattles == 1):
                 startingTime = overallTime = time.time()
@@ -123,9 +154,8 @@ def main():
                 startingTime = time.time()
 
             print("Battle -", numBattles,"\t")
-            time.sleep(5)
             privateChat()
-            time.sleep(5)
+            time.sleep(3)
             privateChat()
 
         ##If we are in a juggernaut battle
@@ -145,8 +175,13 @@ def main():
                     MI.click(644, 337)
                     
                     #multi
-                    MI.click(MI.locateCenterOnScreen('images/multi-shot.png', confidence = 0.7))
-                    MI.click(MI.locateCenterOnScreen('images/med_rain.png', confidence = 0.7))
+                    MI.click(MI.locateCenterOnScreen('images/bh_rain.png', confidence = 0.7))
+                    MI.click(MI.locateCenterOnScreen('images/blood_rain.png', confidence = 0.7))
+                    MI.click(MI.locateCenterOnScreen('images/cyber_rain.png', confidence = 0.8))
+                    MI.click(MI.locateCenterOnScreen('images/tech_rain.png', confidence = 0.8))
+                    MI.click(MI.locateCenterOnScreen('images/merc_rain.png', confidence = 0.8))
+                    MI.click(MI.locateCenterOnScreen('images/tact_rain.png', confidence = 0.8))
+                    
 
                     #PISTOL CORE
                     MI.click(553, 337)
@@ -154,11 +189,11 @@ def main():
                     ##bot
                     MI.click(701, 335)
                     
-                    #gun  
-                    MI.click(497, 336) 
-
                     #aux
                     MI.click(585, 337)  
+                    
+                    #gun  
+                    MI.click(497, 336) 
 
                     #attack
                     MI.click(570, 304)
@@ -181,9 +216,7 @@ def main():
 
             # if(MI.locateCenterOnScreen('images/finish.png',confidence = 0.7, region = (493, 239, 47, 138))):
                     kills, losses, x_algorithm_use_rate = finish2.finish(kills, losses, x_algorithm_use_rate)
-                    if kills < 0 and losses < 0:
-                        print("X undetected")
-                        return
+
                     MI.click(605, 211)
                     MI.click(605, 211)
                     
@@ -193,9 +226,13 @@ def main():
                     newTime = time.time()
                     if numBattles > 0:
                         battleStats(numBattles, kills, losses, newTime, startingTime, overallTime, x_algorithm_use_rate)
+                    elif numBattles > max_wins:
+                        print("We have won", max_wins, "battles. Bot will now close.")
+                        exit()
 
                     #if we get pm program will close after battle
                     if not PMFlag:
+                        print("=========\nwe got pm so bot closing\n=========")
                         exit()
 
 

@@ -17,4 +17,6 @@ while True:
         MI.click(510, 290)
     
 
+    
+
 
